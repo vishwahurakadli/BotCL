@@ -14,8 +14,8 @@ os.makedirs('saved_model/', exist_ok=True)
 
 def main():
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
-    trainset = datasets.MNIST('../data', train=True, download=True, transform=transform)
-    valset = datasets.MNIST('../data', train=False, transform=transform)
+    trainset=datasets.FashionMNIST('../data', train=True, download=True, transform=transform)
+    valset=datasets.FashionMNIST('../data', train=False, transform=transform)
     trainloader = DataLoader(trainset, batch_size=args.batch_size,
                                               shuffle=True,
                                               num_workers=args.num_workers,

@@ -20,9 +20,9 @@ os.makedirs('vis_pp/', exist_ok=True)
 def main():
     transform = transforms.Compose([transforms.ToTensor()])
     transform2 = transforms.Normalize((0.1307,), (0.3081,))
-    val_imgs = datasets.MNIST('./data', train=False, download=True, transform=None).data
-    val_target = datasets.MNIST('./data', train=False, download=True, transform=None).targets
-    valset = datasets.MNIST('../data', train=False, transform=transform)
+    val_imgs = datasets.FashionMNIST('./data', train=False, download=True, transform=None).data
+    val_target = datasets.FashionMNIST('./data', train=False, download=True, transform=None).targets
+    valset = datasets.FashionMNIST('../data', train=False, transform=transform)
     valloader = DataLoader(valset, batch_size=batch_size,
                            shuffle=False,
                            num_workers=num_workers,
@@ -41,7 +41,7 @@ def main():
     img_orl = Image.fromarray((data[index][0].cpu().detach().numpy()*255).astype(np.uint8), mode='L')
     img_orl.save("vis/" + f'origin.png')
     img = data[index].unsqueeze(0).to(device)
-    cpt, pred, cons, att_loss, pp = model(transform2(img))
+    cpt, pred, cons, att_loss, pp = model(transform2(img.reshape(1, 28, 28)))
     # print(torch.softmax(pred, dim=-1))
     print("The prediction is: ", torch.argmax(pred, dim=-1))
     cons = cons.view(28, 28).cpu().detach().numpy()

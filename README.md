@@ -13,6 +13,12 @@ Interpreting and explaining the behavior of neural networks is critical for many
 Download CUB or ImageNet and set them into direction of your "dataset_dir". You can also make your own dataset with the structure similar to ImageNet and name it as Custom.
 
 #### Usage for MNIST
+
+Using this command to get number and labels of concepts
+```
+python conceptnet.py 
+```
+
 Using the following command for training
 ```
 python main_recon.py --num_classes 10 --num_cpt 20 --lr 0.001 --epoch 50 --lr_drop 30

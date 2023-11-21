@@ -1,0 +1,4 @@
+data/
+**__pycache__/
+saved_model/
+CUB_200_2011.tgz
